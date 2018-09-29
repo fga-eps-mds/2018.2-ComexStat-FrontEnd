@@ -1,6 +1,5 @@
-FROM node:8.6
+FROM node:8.9
 WORKDIR /app
 COPY package.json /app/
 RUN npm install
 COPY ./ /app/
-ARG env=dev

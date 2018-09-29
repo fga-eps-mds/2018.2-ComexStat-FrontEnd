@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  webapp:
+  webdev:
     build:
       context: ../../.
       dockerfile: provision/dev/Dockerfile
-    command: bash -c "chmod +x provision/scripts/run.sh && ./provision/scripts/run.sh"
+    command: npm run start
     volumes:
       - ../../.:/app
     ports:
