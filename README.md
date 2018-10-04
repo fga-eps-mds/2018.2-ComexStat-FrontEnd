@@ -1,27 +1,35 @@
-# ComexstatApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+# Comex Stat
 
-## Development server
+[![Build Status](https://travis-ci.org/fga-eps-mds/2018.2-ComexStat.svg?branch=develop)](https://travis-ci.org/fga-eps-mds/2018.2-ComexStat)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Sobre
 
-## Code scaffolding
+O ComexStat, vem com o objetivo de tornar mais fácil o acesso aos dados relacionados ao comércio exterior de bens, e posteriormente serviços no Brasil, proporcionando aos usuários a possibilidade de trabalhar com as informações desejadas de forma mais adequada as suas necessidades.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Documentação
 
-## Build
+Para entender um pouco mais sobre o produto, acesse nossa [documentação](https://fga-eps-mds.github.io/2018.2-ComexStat).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Instalação
 
-## Running unit tests
+Nesta seção está descrito cada passo necessário para a configuração e utilização da aplicação.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Pré-requisitos
+  * [Git](https://git-scm.com/)
+  * [Docker](https://www.docker.com/get-docker)
+  * [Docker-composer](https://docs.docker.com/compose/install/#install-compose)
 
-## Running end-to-end tests
+#### Configuração
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Clone o repositório no diretório desejado
 
-## Further help
+	git clone https://github.com/fga-eps-mds/2018.2-ComexStat-FrontEnd.git
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Utilize o seguinte comando para subir a aplicação
+
+	docker-compose up
+
+A aplicação pode ser acessada através do localhost:
+
+	localhost:4200
