@@ -6,4 +6,5 @@
 .navbar .nav-item .nav-link {
     color: white;
     padding-right: 1em;
+    font-weight: bold;
 }
