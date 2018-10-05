@@ -1,0 +1,21 @@
+.homepage{
+    margin-top: 5%;
+}
+
+.homepage h1 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.homepage p {
+    margin: 5% 0 7% 0;
+}
+
+.homepage .btn-primary {
+    background-color: #17c13d;
+    border: 0;
+}
+
+.homepage img {
+    margin-right: 1.7em;
+}
