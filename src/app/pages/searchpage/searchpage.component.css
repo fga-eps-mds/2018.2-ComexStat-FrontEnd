@@ -1,4 +1,4 @@
-div{
+.searchpage{
   font-family: "Helvetica Neue";
   font-weight: bold;
 }
@@ -13,11 +13,18 @@ div{
   font-weight: bold;
 }
 
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 3px solid #17c13d;
-    margin: 1em 0;
-    padding: 0;
+.searchpage hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 3px solid #17c13d;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.searchpage .form-control{
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+  -webkit-appearance: button;
 }
