@@ -8,18 +8,18 @@
 
       <div class="form-group col-md-4">
         <label>Tipo do Mercado</label>
-          <select id="t-market" class="form-control">
-            <option selected>Bens</option>
-            <option>Serviços</option>
-          </select>
+        <select id="t-market" class="form-control">
+          <option selected>Bens</option>
+          <option>Serviços</option>
+        </select>
       </div>
 
       <div class="form-group col-md-3">
         <label for="inputState">Tipo do Troca</label>
-          <select id="t-trade" class="form-control">
-            <option selected>Importação</option>
-            <option>Exportação</option>
-          </select>
+        <select id="t-trade" class="form-control">
+          <option selected>Importação</option>
+          <option>Exportação</option>
+        </select>
       </div>
 
 
@@ -33,18 +33,18 @@
 
       <div class="form-group col-md-4">
         <label for="y-initial">Ano Inicial</label>
-          <select id="inputState" class="form-control">
-            <option selected>1998</option>
-            <option>1999</option>
-          </select>
+        <select id="inputState" class="form-control">
+          <option selected>2018</option>
+          <option *ngFor="let year of years">{{year}}</option>
+        </select>
       </div>
 
       <div class="form-group col-md-3">
         <label for="y-final">Ano Final</label>
-          <select id="inputState" class="form-control">
-            <option selected>2017</option>
-            <option>2018</option>
-          </select>
+        <select id="inputState" class="form-control">
+          <option selected>2018</option>
+          <option *ngFor="let year of years">{{year}}</option>
+        </select>
       </div>
 
     </div>
