@@ -1,0 +1,30 @@
+.searchpage{
+  font-family: "Helvetica Neue";
+  font-weight: bold;
+}
+
+.searchpage h1{
+  margin-top: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  font-size: 25px;
+  font-family: "Helvetica Neue";
+  font-weight: bold;
+}
+
+.searchpage hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 3px solid #17c13d;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.searchpage .form-control{
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+  -webkit-appearance: button;
+}
