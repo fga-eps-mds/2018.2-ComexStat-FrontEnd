@@ -17,3 +17,7 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {}
 }
+
+export class NgIfComponent {
+  show = false;
+}
