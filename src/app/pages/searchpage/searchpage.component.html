@@ -1,36 +1,36 @@
 <div class="container searchpage">
 
   <div>
-    <h1>Tipo de Operação</h1>
+    <h1>Operation Type</h1>
     <hr />
 
     <div class="form-row">
 
       <div class="form-group col-md-4">
-        <label>Tipo do Mercado</label>
+        <label>Market Type</label>
         <select id="t-market" class="form-control">
-          <option selected>Bens</option>
-          <option>Serviços</option>
+          <option selected>Assets</option>
+          <option>Services</option>
         </select>
       </div>
 
       <div class="form-group col-md-3">
-        <label for="inputState">Tipo do Troca</label>
+        <label for="inputState">Exchange Rate</label>
         <select id="t-trade" class="form-control">
-          <option selected>Importação</option>
-          <option>Exportação</option>
+          <option selected>Import</option>
+          <option>Export</option>
         </select>
       </div>
 
   </div>
 
-    <h1>Periodo de Busca</h1>
+    <h1>Search Period</h1>
     <hr />
 
     <div class="form-row">
 
       <div class="form-group col-md-4">
-        <label for="y-initial">Ano Inicial</label>
+        <label for="y-initial">Initial Year</label>
         <select id="inputState" class="form-control">
           <option selected>2018</option>
           <option *ngFor="let year of years">{{year}}</option>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="form-group col-md-3">
-        <label for="y-final">Ano Final</label>
+        <label for="y-final">Final Year</label>
         <select id="inputState" class="form-control">
           <option selected>2018</option>
           <option *ngFor="let year of years">{{year}}</option>
@@ -56,24 +56,66 @@
               
         <div class="form-row">
 
-          <div class="form-group col-md-4">
+          <div class="form-group col">
             <label>Grouping</label>
-            <select id="t-market" class="form-control">
+            <select id="group" class="form-control">
               <option selected>Economic Block</option>
               <option>Option 2</option>
             </select>
           </div>
-          
-          <div class="form-group col-md-3">
+
+          <div class="custom-control custom-checkbox col">
+            <label>Show Value In</label>
+            <div class="row">
+              <div class="col-3">
+                <input type="checkbox" class="form-checkbox" > US FOB<br>
+              </div>
+              <div class="col-6">
+                <input type="checkbox" class="form-checkbox" > New Weight<br> 
+              </div>
+            </div>
+          </div>
+
+          <div class="w-100"></div>
+
+          <div class="form-group col">
             <label>Economic Block</label>
-            <select id="t-trade" class="form-control">
+            <select id="eco-block" class="form-control">
               <option selected>Europian Union</option>
               <option>South American</option>
             </select>
           </div>
-            
+
+          <div class="form-group col">
+            <label>Detail by Month</label>
+            <div class="row"> 
+              <div class="col-auto">    
+                <select id="month-initial" class="form-control"> 
+                  <option selected>January</option>
+                  <option>February</option>
+                </select>
+              </div>
+              <div class="col-auto">                
+                <select id="month-final" class="form-control">
+                  <option selected>March</option>
+                  <option>April</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
         </div>    
           
       </div>
 
+      <div class="row justify-content-end">
+        <div class="col-auto">
+          <button type="button" class="btn btn-query">Query</button>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-clear">Clear</button>
+        </div>
+      </div>
+
   </div>
+  
