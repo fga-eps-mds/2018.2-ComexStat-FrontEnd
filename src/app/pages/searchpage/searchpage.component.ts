@@ -33,7 +33,9 @@ export class SearchPageComponent implements OnInit {
         allImport{
             edges{
                node{
-                 name
+                 ncm{
+                  ncmNamePt
+                }
                }
 
             }
