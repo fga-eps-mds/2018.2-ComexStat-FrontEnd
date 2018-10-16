@@ -6,6 +6,9 @@ language: node_js
 node_js:
   - "10.5"
 
+env:
+  - CODECOV_TOKEN=da5c4fe1-2616-413d-9823-7ed284da66a5
+
 branches:
   only:
     - develop
