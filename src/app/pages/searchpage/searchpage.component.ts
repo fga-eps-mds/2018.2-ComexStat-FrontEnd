@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import gql from 'graphql-tag';
+import * as $ from "jquery";
 
 import { AssetImportFacts, Query } from "../../types";
 
@@ -29,6 +30,28 @@ export class SearchPageComponent implements OnInit {
     for (var ano = 2016; ano >= 1998; ano--) {
       this.years.push(ano.toString()); //populating list "years" with the years between 1998 and 2016
     }
+  }
+
+
+  public exportToCsv(element) {
+    var table = element.nextElementSibling;
+    var csvString = "";
+    for (var i = 0; i < table.rows.length; i++) {
+      var rowData = table.rows[i].cells;
+      for (var j = 0; j < rowData.length; j++) {
+        csvString = csvString + rowData[j].innerHTML + ";";
+      }
+      csvString = csvString.substring(0, csvString.length - 1);
+      csvString = csvString + "\n";
+    }
+    csvString = csvString.substring(0, csvString.length - 1);
+    var a = $("<a/>", {
+      style: "display:none",
+      href: "data:application/octet-stream;base64," + btoa(csvString),
+      download: "assetsData.csv"
+    }).appendTo("body");
+    a[0].click();
+    a.remove();
   }
 
   ngOnInit() {
