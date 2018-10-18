@@ -23,7 +23,7 @@ export class SearchPageComponent implements OnInit {
       this.years.push(ano.toString()); //populating list "years" with the years between 1998 and 2016
     }
   }
-
+  
   ngOnInit() {
 
     //Sending query to GraphQL end-point and receiving its result
@@ -56,5 +56,8 @@ export class SearchPageComponent implements OnInit {
 
     });
   }
+}
 
+export class NgIfComponent {
+  show = false;
 }
