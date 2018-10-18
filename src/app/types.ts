@@ -1,9 +1,18 @@
+export type ncm = {
+    ncmNamePt: string;
+};
+export type node = {
+    date: string;
+    fobValue: string;
+    ncm: ncm;
+};
+export type edges = {
+    node: node;
+};
 export type AssetImportFacts = {
-    name: string;
-
-}
-
+    edges: edges[];
+};
 
 export type Query = {
-    allImport: AssetImportFacts[];
-}
+    allImport: AssetImportFacts;
+};
