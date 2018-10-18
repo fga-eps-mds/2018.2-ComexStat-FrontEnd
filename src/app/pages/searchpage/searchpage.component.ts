@@ -17,21 +17,82 @@ export class SearchPageComponent implements OnInit {
   years: String[];
   data: AssetImportFacts;
   importations: Observable<AssetImportFacts>;
-  year = "2018-05-01";
-
+  byear;
+  fyear;
+  dataIsNotEmpty: boolean
 
   constructor(private apollo: Apollo) {
 
-    this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }]
-    };
-
+    this.dataIsNotEmpty = false;
     this.years = ["2017"]; //initializing list so that the method "push" can be used
     for (var ano = 2016; ano >= 1998; ano--) {
       this.years.push(ano.toString()); //populating list "years" with the years between 1998 and 2016
     }
   }
 
+  public queryData() {
+
+    this.dataIsNotEmpty = false;
+
+    this.data = {
+      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }]
+    };
+
+    this.byear = $("#y-initial option:selected").text() + "-01-01";
+    this.fyear = $("#y-final option:selected").text() + "-12-31";
+
+    if (this.fyear < this.byear) {
+      alert("The final year of the range can't be lower than the initial")
+      return
+    }
+
+    //Sending query to GraphQL end-point and receiving its result
+    this.importations = this.apollo
+      .watchQuery<Query>({
+        query: gql`
+        {
+          allImport(commercializedBetween:"[\\"${
+          this.byear
+          }\\",\\"${this.fyear}\\"]"){
+              edges{
+                 node{
+                  ncm{
+                    ncmNamePt
+                  }
+                  date
+                  fobValue
+                 }
+  
+              }
+            
+          }
+          
+        }
+        `
+      })
+      .valueChanges.pipe(
+        //Maping result objects to importations variable
+        map(result => result.data.allImport)
+      );
+    //Printing to console each element returne
+
+    this.importations.forEach(element => {
+      element.edges.forEach(edge => {
+        this.dataIsNotEmpty = true;
+        this.data.edges.push({
+          node: {
+            date: edge.node.date,
+            fobValue: edge.node.fobValue,
+            ncm: { ncmNamePt: edge.node.ncm.ncmNamePt }
+          }
+        });
+
+      });
+    });
+
+    this.data.edges.shift();
+
+  }
 
   public exportToCsv(element) {
     var table = element.nextElementSibling;
@@ -55,50 +116,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Sending query to GraphQL end-point and receiving its result
-    this.importations = this.apollo
-      .watchQuery<Query>({
-        query: gql`
-      {
-        allImport(commercializedBetween:"[\\"${
-          this.year
-          }\\",\\"2018-12-31\\"]"){
-            edges{
-               node{
-                ncm{
-                  ncmNamePt
-                }
-                date
-                fobValue
-               }
 
-            }
-          
-        }
-        
-      }
-      `
-      })
-      .valueChanges.pipe(
-        //Maping result objects to importations variable
-        map(result => result.data.allImport)
-      );
-    //Printing to console each element returne
-
-    this.importations.forEach(element => {
-      element.edges.forEach(edge => {
-        this.data.edges.push({
-          node: {
-            date: edge.node.date,
-            fobValue: edge.node.fobValue,
-            ncm: { ncmNamePt: edge.node.ncm.ncmNamePt }
-          }
-        });
-
-      });
-    });
-
-    this.data.edges.shift();
   }
 }
 

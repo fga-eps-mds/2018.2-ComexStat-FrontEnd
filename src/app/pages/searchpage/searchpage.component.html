@@ -31,7 +31,7 @@
 
       <div class="form-group col-md-4">
         <label for="y-initial">Initial Year</label>
-        <select id="inputState" class="form-control">
+        <select id="y-initial" class="form-control">
           <option selected>2018</option>
           <option *ngFor="let year of years">{{year}}</option>
         </select>
@@ -39,7 +39,7 @@
 
       <div class="form-group col-md-3">
         <label for="y-final">Final Year</label>
-        <select id="inputState" class="form-control">
+        <select id="y-final" class="form-control">
           <option selected>2018</option>
           <option *ngFor="let year of years">{{year}}</option>
         </select>
@@ -110,28 +110,29 @@
 
     <div class="row justify-content-end">
       <div class="col-auto">
-        <button type="button" class="btn btn-query">Query</button>
+        <button type="button" class="btn btn-query" (click)="queryData()">Query</button>
       </div>
       <div class="col-auto">
         <button type="button" class="btn btn-clear">Clear</button>
       </div>
     </div>
-    <button id="btdown" class="btn" export-to-csv (click)="exportToCsv($event.target)">Export to CSV</button>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Name</th>
-          <th scope="col">FOB Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let value of data.edges">
-          <td>{{value.node.date}}</td>
-          <td>{{value.node.ncm.ncmNamePt}}</td>
-          <td>{{value.node.fobValue}}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <div *ngIf="dataIsNotEmpty">
+      <button id="btdown" class="btn" export-to-csv (click)="exportToCsv($event.target)">Export to CSV</button>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">FOB Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let value of data.edges">
+            <td>{{value.node.date}}</td>
+            <td>{{value.node.ncm.ncmNamePt}}</td>
+            <td>{{value.node.fobValue}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
