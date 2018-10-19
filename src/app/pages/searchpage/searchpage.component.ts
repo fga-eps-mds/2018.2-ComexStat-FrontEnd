@@ -20,9 +20,10 @@ export class SearchPageComponent implements OnInit {
   byear;
   fyear;
   dataIsNotEmpty: boolean
+  show: boolean
 
   constructor(private apollo: Apollo) {
-
+    this.show = false;
     this.dataIsNotEmpty = false;
     this.years = ["2017"]; //initializing list so that the method "push" can be used
     for (var ano = 2016; ano >= 1998; ano--) {
@@ -127,8 +128,4 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
 
   }
-}
-
-export class NgIfComponent {
-  show = false;
 }
