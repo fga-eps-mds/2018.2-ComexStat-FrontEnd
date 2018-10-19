@@ -2,7 +2,7 @@
 
   <div>
     <h1>Operation Type</h1>
-    <hr />
+    <hr>
 
     <div class="form-row">
 
@@ -25,7 +25,7 @@
   </div>
 
     <h1>Search Period</h1>
-    <hr />
+    <hr>
 
     <div class="form-row">
 
@@ -47,13 +47,13 @@
 
     </div>
 
-    <input type="checkbox" (change)="show=!show">{{show ? 'Advanced Search' : 'Advanced Search'}}
+    <input type="checkbox" (change)="false=!false">{{false ? 'Advanced Search' : 'Advanced Search'}}
 
-      <div *ngIf="show">
-      
+      <div *ngIf="false">
+
       <h1>Advanced Options</h1>
       <hr />
-              
+
         <div class="form-row">
 
           <div class="form-group col">
@@ -71,7 +71,7 @@
                 <input type="checkbox" class="form-checkbox" > US FOB<br>
               </div>
               <div class="col-6">
-                <input type="checkbox" class="form-checkbox" > New Weight<br> 
+                <input type="checkbox" class="form-checkbox" > New Weight<br>
               </div>
             </div>
           </div>
@@ -88,14 +88,14 @@
 
           <div class="form-group col">
             <label>Detail by Month</label>
-            <div class="row"> 
-              <div class="col-auto">    
-                <select id="month-initial" class="form-control"> 
+            <div class="row">
+              <div class="col-auto">
+                <select id="month-initial" class="form-control">
                   <option selected>January</option>
                   <option>February</option>
                 </select>
               </div>
-              <div class="col-auto">                
+              <div class="col-auto">
                 <select id="month-final" class="form-control">
                   <option selected>March</option>
                   <option>April</option>
@@ -104,8 +104,8 @@
             </div>
           </div>
 
-        </div>    
-          
+        </div>
+
       </div>
 
       <div class="row justify-content-end">
@@ -118,4 +118,3 @@
       </div>
 
   </div>
-  

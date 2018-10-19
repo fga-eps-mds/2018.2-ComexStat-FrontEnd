@@ -2,9 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import gql from 'graphql-tag';
-
 import { AssetImportFacts, Query } from '../../types';
 
 @Component({
@@ -16,14 +14,13 @@ export class SearchPageComponent implements OnInit {
   years: String[];
   importations: Observable<AssetImportFacts[]>;
 
-
   constructor(private apollo: Apollo) {
     this.years = ["2017"]; //initializing list so that the method "push" can be used
     for (var ano = 2016; ano >= 1998; ano--) {
       this.years.push(ano.toString()); //populating list "years" with the years between 1998 and 2016
     }
   }
-  
+
   ngOnInit() {
 
     //Sending query to GraphQL end-point and receiving its result
@@ -39,9 +36,9 @@ export class SearchPageComponent implements OnInit {
                }
 
             }
-          
+
         }
-        
+
       }
       `
     })
@@ -58,6 +55,6 @@ export class SearchPageComponent implements OnInit {
   }
 }
 
-export class NgIfComponent {
-  show = false;
-}
+// export class NgIfComponent {
+//   show = false;
+// }
