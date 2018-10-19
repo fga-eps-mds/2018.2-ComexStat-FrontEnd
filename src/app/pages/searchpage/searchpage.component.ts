@@ -14,9 +14,9 @@ import { AssetImportFacts, Query } from "../../types";
   styleUrls: ["./searchpage.component.css"]
 })
 export class SearchPageComponent implements OnInit {
-  years: String[];
-  data: AssetImportFacts;
-  importations: Observable<AssetImportFacts>;
+  years: String[]; //array to store all possible years of the search query selection
+  data: AssetImportFacts; // variable to store the received data into a more organized way, to be used in the template
+  importations: Observable<AssetImportFacts>; // variable to receive the query result returned by apollo
   byear;
   fyear;
   dataIsNotEmpty: boolean
@@ -35,9 +35,10 @@ export class SearchPageComponent implements OnInit {
     this.dataIsNotEmpty = false;
 
     this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }]
+      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }] //code to empty data variable before receiving a new set of results
     };
 
+    //getting the initial and final years of the search date-range selected by the user
     this.byear = $("#y-initial option:selected").text() + "-01-01";
     this.fyear = $("#y-final option:selected").text() + "-12-31";
 
@@ -74,11 +75,11 @@ export class SearchPageComponent implements OnInit {
         //Maping result objects to importations variable
         map(result => result.data.allImport)
       );
-    //Printing to console each element returne
 
+    //Storing the results on data variable 
     this.importations.forEach(element => {
       element.edges.forEach(edge => {
-        this.dataIsNotEmpty = true;
+        this.dataIsNotEmpty = true; // if this piece of code is executed the result of the query was not empty
         this.data.edges.push({
           node: {
             date: edge.node.date,
@@ -90,13 +91,19 @@ export class SearchPageComponent implements OnInit {
       });
     });
 
+    //Deleting the first element of the array, which is empty because of the initialization at the start of the function
     this.data.edges.shift();
 
   }
 
+  //Function to export table as CSV
   public exportToCsv(element) {
+
+    //Storing the table on a variable
     var table = element.nextElementSibling;
-    var csvString = "";
+    var csvString = ""; //Creating a string to store generated csv
+
+    //Generating CSV by going through the table rows and splitting cells values with ";" and lines with a line break
     for (var i = 0; i < table.rows.length; i++) {
       var rowData = table.rows[i].cells;
       for (var j = 0; j < rowData.length; j++) {
@@ -106,13 +113,15 @@ export class SearchPageComponent implements OnInit {
       csvString = csvString + "\n";
     }
     csvString = csvString.substring(0, csvString.length - 1);
+
+    //Generating file with the csvString and simulating button click to start its download 
     var a = $("<a/>", {
       style: "display:none",
-      href: "data:application/octet-stream;base64," + btoa(csvString),
+      href: "data:application/octet-stream;base64," + btoa(csvString), //Generating the file
       download: "assetsData.csv"
     }).appendTo("body");
-    a[0].click();
-    a.remove();
+    a[0].click(); //Simulating click
+    a.remove(); //Removing temporary button
   }
 
   ngOnInit() {
