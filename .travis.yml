@@ -21,6 +21,4 @@ script:
   - npm run e2e
   - ng build --prod --aot
 
-branches:
-  only:
-    - develop
+  
