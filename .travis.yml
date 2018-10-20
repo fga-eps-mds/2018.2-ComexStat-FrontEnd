@@ -20,7 +20,3 @@ script:
   - ng test --watch=false --code-coverage
   - npm run e2e
   - ng build --prod --aot
-
-branches:
-  only:
-    - develop

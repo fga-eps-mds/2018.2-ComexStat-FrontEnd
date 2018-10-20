@@ -1,6 +1,6 @@
 .searchpage{
   font-family: "Helvetica Neue";
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .searchpage h1{
@@ -26,5 +26,42 @@
   border-radius: 10px;
   width: 200px;
   height: 35px;
-  -webkit-appearance: button;
+}
+
+.searchpage .form-checkbox{
+  border-radius: 10px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.searchpage .btn-query {
+  background-color: #17c13d;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 12px;
+  margin: 3em 0;
+}
+
+.searchpage .btn-clear {
+  background-color: #f44336;;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 12px;
+  margin: 3em 0;
+}
+
+#btdown{
+  margin-bottom: 10px;
+  background-color: #17c13d;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 12px;
 }
