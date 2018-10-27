@@ -1,21 +1,42 @@
-.homepage{
-    margin-top: 5%;
+.logo-header {
+	background: linear-gradient(rgba(62, 63, 64, 0.6), rgba(62, 63, 64, 0.6)), url("src/assets/img/trading-business.jpg");
+	background-size: cover;
+	background-position: center bottom;
+	color: #fff;
+	font-family: 'Nunito', sans-serif;
+	padding-top: 150px;
+	padding-bottom: 100px;
 }
 
-.homepage h1 {
-    text-align: center;
-    font-size: 1.5em;
+.logo-header h1 {
+	font-size: 2.5rem;
+	font-weight: 300;
+    margin: 0 auto 0.2em auto;
+    font-weight: bold;
 }
 
-.homepage p {
-    margin: 5% 0 7% 0;
+.logo-header p {
+	font-size: 1.15rem;
+	width: 80%;
+    margin: 0 auto 2em auto;
 }
 
-.homepage .btn-primary {
-    background-color: #17c13d;
-    border: 0;
+.logo-header .logo {
+    margin: 0 auto 1em auto;
+    max-width: 35%;
 }
 
-.homepage img {
-    margin-right: 1.7em;
+.logo-header .btn {
+	padding: 10px 26px;
+	background-color: #313131;
+	color: #FFF;
+	display: inline-block;
+	border: solid 2px #313131;
+	border-radius: 2px;
+}
+
+.logo-header .btn:hover {
+	color: #FFF;
+	background-color: #17c13d;
+	border-color: #17c13d;
 }
