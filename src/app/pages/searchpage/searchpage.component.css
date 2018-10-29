@@ -1,5 +1,5 @@
 .searchpage{
-  font-family: "Helvetica Neue";
+  font-family: 'Nunito', sans-serif;
   /* font-weight: bold; */
 }
 
@@ -9,7 +9,7 @@
   margin-right: 0;
   margin-bottom: 0;
   font-size: 25px;
-  font-family: "Helvetica Neue";
+	font-family: 'Nunito', sans-serif;
   font-weight: bold;
 }
 

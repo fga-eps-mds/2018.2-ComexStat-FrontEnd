@@ -1,5 +1,5 @@
 .logo-header {
-	background: linear-gradient(rgba(62, 63, 64, 0.6), rgba(62, 63, 64, 0.6)), url("src/assets/img/trading-business.jpg");
+	background-image: linear-gradient(rgba(62, 63, 64, 0.6), rgba(62, 63, 64, 0.6)), url("/src/assets/img/trading-business.jpg");
 	background-size: cover;
 	background-position: center bottom;
 	color: #fff;
