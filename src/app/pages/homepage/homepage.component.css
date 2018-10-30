@@ -4,26 +4,18 @@
 	background-position: center bottom;
 	color: #fff;
 	font-family: 'Nunito', sans-serif;
-	padding-top: 150px;
-	padding-bottom: 100px;
+	padding-top: 220px;
+	padding-bottom: 270px;
 }
 
 .logo-header h1 {
-	font-size: 2.5rem;
-	font-weight: 300;
-    margin: 0 auto 0.2em auto;
+	font-size: 3.5rem;
+    margin: 0 auto 0.3em auto;
     font-weight: bold;
 }
 
 .logo-header p {
-	font-size: 1.15rem;
-	width: 80%;
-    margin: 0 auto 2em auto;
-}
-
-.logo-header .logo {
-    margin: 0 auto 1em auto;
-    max-width: 35%;
+	font-size: 1.30rem;
 }
 
 .logo-header .btn {
