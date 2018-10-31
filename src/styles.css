@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.btn {
+  color: white;
+  padding: 10px 26px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 2px;
+  margin: 3em 0;
+  display: inline-block;
+}
+
+select{
+  max-width: 32em;
+}

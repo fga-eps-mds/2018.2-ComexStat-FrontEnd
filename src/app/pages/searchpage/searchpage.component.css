@@ -1,15 +1,9 @@
-.searchpage{
-  font-family: "Helvetica Neue";
-  /* font-weight: bold; */
-}
-
 .searchpage h1{
   margin-top: 25px;
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
   font-size: 25px;
-  font-family: "Helvetica Neue";
   font-weight: bold;
 }
 
@@ -36,32 +30,11 @@
 
 .searchpage .btn-query {
   background-color: #17c13d;
-  border: none;
-  color: white;
-  padding: 12px 28px;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 12px;
-  margin: 3em 0;
+  border-color: #17c13d;
+  /* margin-right: 0px; */
 }
 
 .searchpage .btn-clear {
-  background-color: #f44336;;
-  border: none;
-  color: white;
-  padding: 12px 28px;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 12px;
-  margin: 3em 0;
-}
-
-#btdown{
-  margin-bottom: 10px;
-  background-color: #17c13d;
-  border: none;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 12px;
+  background-color: #f44336;
+  border-color: #f44336;
 }
