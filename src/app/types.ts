@@ -1,3 +1,9 @@
+export type tradeBloc = {
+    blocNamePt: String;
+}
+export type originCountry = {
+    tradeBloc: tradeBloc;
+}
 export type ncm = {
     ncmNamePt: string;
 };
@@ -5,6 +11,7 @@ export type node = {
     date: string;
     fobValue: string;
     ncm: ncm;
+    originCountry: originCountry;
 };
 export type edges = {
     node: node;

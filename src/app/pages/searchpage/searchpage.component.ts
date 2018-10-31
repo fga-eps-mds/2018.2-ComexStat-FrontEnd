@@ -10,7 +10,8 @@ import { AssetImportFacts, Query } from "../../types";
   templateUrl: "./searchpage.component.html",
   styleUrls: ["./searchpage.component.css"]
 })
-export class SearchPageComponent implements OnInit {years: String[]; //array to store all possible years of the search query selection
+export class SearchPageComponent implements OnInit {
+    years: String[]; //array to store all possible years of the search query selection
   byear;
   fyear;
   show: boolean
@@ -35,8 +36,8 @@ export class SearchPageComponent implements OnInit {years: String[]; //array to 
     }
 
     //redirects to the resultpage with the years as parameters, so resultpage can query the api
-    this.router.navigate(['/resultpage'], {queryParams: {byear: this.byear, fyear: this.fyear}});
+    this.router.navigate(['/resultpage'], { queryParams: { byear: this.byear, fyear: this.fyear, grouping: $('#group option:selected').text() } });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

@@ -20,7 +20,13 @@ export class ResultPageComponent implements OnInit {
   importations: Observable<AssetImportFacts>; // variable to receive the query result returned by apollo
   byear;
   fyear;
+  grouping;
   dataIsNotEmpty: boolean
+  groupingSelected: boolean
+  groupBy: Array<{
+    name: String;
+    totalValue: number;
+  }> = [{ name: "ds", totalValue: 0 }];
 
   constructor(private apollo: Apollo, private route: ActivatedRoute) {
     this.dataIsNotEmpty = false;
@@ -32,6 +38,7 @@ export class ResultPageComponent implements OnInit {
     //getting the initial and final years of the search date-range passed through the URL
     this.byear = this.route.snapshot.queryParamMap.get('byear');
     this.fyear = this.route.snapshot.queryParamMap.get('fyear');
+    this.grouping = this.route.snapshot.queryParamMap.get('grouping');
 
     if (this.fyear < this.byear) {
       alert("The final year of the range can't be lower than the initial")
@@ -46,7 +53,7 @@ export class ResultPageComponent implements OnInit {
     this.dataIsNotEmpty = false;
 
     this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }] //code to empty data variable before receiving a new set of results
+      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" }, originCountry: { tradeBloc: { blocNamePt: "" } } } }] //code to empty data variable before receiving a new set of results
     };
 
     //Sending query to GraphQL end-point and receiving its result
@@ -64,6 +71,11 @@ export class ResultPageComponent implements OnInit {
                   }
                   date
                   fobValue
+                  originCountry{
+                    tradeBloc{
+                      blocNamePt
+                    }
+                  }
                  }
   
               }
@@ -77,16 +89,42 @@ export class ResultPageComponent implements OnInit {
         //Maping result objects to importations variable
         map(result => result.data.allImport)
       );
-
+    var gName
+    var index = 0
     //Storing the results on data variable 
     this.importations.forEach(element => {
       element.edges.forEach(edge => {
         this.dataIsNotEmpty = true; // if this piece of code is executed the result of the query was not empty
+        if (this.grouping != "Nenhum") {
+
+          this.groupingSelected = true;
+          switch (this.grouping) {
+            case "Economic Block":
+              gName = edge.node.originCountry.tradeBloc.blocNamePt
+              break;
+
+            default:
+              break;
+          }
+
+
+          index = this.groupBy.findIndex(e => e.name === gName);
+          if (index > -1) {
+            this.groupBy[index].totalValue += parseFloat(edge.node.fobValue)
+          }
+          else {
+            this.groupBy.push({ name: gName, totalValue: parseFloat(edge.node.fobValue) })
+          }
+
+
+        }
+
         this.data.edges.push({
           node: {
             date: edge.node.date,
             fobValue: edge.node.fobValue,
-            ncm: { ncmNamePt: edge.node.ncm.ncmNamePt }
+            ncm: { ncmNamePt: edge.node.ncm.ncmNamePt },
+            originCountry: { tradeBloc: { blocNamePt: edge.node.originCountry.tradeBloc.blocNamePt } }
           }
         });
 
@@ -95,7 +133,7 @@ export class ResultPageComponent implements OnInit {
 
     //Deleting the first element of the array, which is empty because of the initialization at the start of the function
     this.data.edges.shift();
-
+    this.groupBy.shift();
   }
 
   //Function to export table as CSV
@@ -127,6 +165,6 @@ export class ResultPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 }
