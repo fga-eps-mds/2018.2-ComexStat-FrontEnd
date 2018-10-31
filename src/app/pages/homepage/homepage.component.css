@@ -3,7 +3,6 @@
 	background-size: cover;
 	background-position: center bottom;
 	color: #fff;
-	font-family: 'Nunito', sans-serif;
 	padding-top: 220px;
 	padding-bottom: 270px;
 }
@@ -20,15 +19,15 @@
 
 .logo-header .btn {
 	padding: 10px 26px;
-	background-color: #313131;
+	background-color: #17c13d;
 	color: #FFF;
 	display: inline-block;
-	border: solid 2px #313131;
+	border: solid 2px #17c13d;
 	border-radius: 2px;
 }
 
 .logo-header .btn:hover {
 	color: #FFF;
-	background-color: #17c13d;
-	border-color: #17c13d;
+	background-color: #313131;
+	border-color: #313131;
 }
