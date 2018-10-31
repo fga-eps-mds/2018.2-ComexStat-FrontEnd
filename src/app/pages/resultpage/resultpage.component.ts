@@ -26,7 +26,7 @@ export class ResultPageComponent implements OnInit {
   groupBy: Array<{
     name: String;
     totalValue: number;
-  }> = [{ name: "ds", totalValue: 0 }];
+  }> = [{ name: "default", totalValue: 0 }];
 
   constructor(private apollo: Apollo, private route: ActivatedRoute) {
     this.dataIsNotEmpty = false;
@@ -53,7 +53,11 @@ export class ResultPageComponent implements OnInit {
     this.dataIsNotEmpty = false;
 
     this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" }, originCountry: { tradeBloc: { blocNamePt: "" } } } }] //code to empty data variable before receiving a new set of results
+      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" },
+                originCountry: { countryNamePt : "",  tradeBloc: { blocNamePt: "" } } ,
+                urf: { urfName: "" },
+                transportation: { transportationName: "" }
+              } }] //code to empty data variable before receiving a new set of results
     };
 
     //Sending query to GraphQL end-point and receiving its result
@@ -72,16 +76,23 @@ export class ResultPageComponent implements OnInit {
                   date
                   fobValue
                   originCountry{
+                    countryNamePt
                     tradeBloc{
                       blocNamePt
                     }
                   }
+                  urf{
+                    urfName
+                  }
+                  transportation{
+                    transportationName
+                  }
                  }
-  
+
               }
-            
+
           }
-          
+
         }
         `
       })
@@ -91,16 +102,28 @@ export class ResultPageComponent implements OnInit {
       );
     var gName
     var index = 0
-    //Storing the results on data variable 
+    //Storing the results on data variable
     this.importations.forEach(element => {
       element.edges.forEach(edge => {
         this.dataIsNotEmpty = true; // if this piece of code is executed the result of the query was not empty
-        if (this.grouping != "Nenhum") {
+        if (this.grouping != "None") {
 
           this.groupingSelected = true;
           switch (this.grouping) {
             case "Economic Block":
               gName = edge.node.originCountry.tradeBloc.blocNamePt
+              break;
+
+            case "Country":
+              gName = edge.node.originCountry.countryNamePt
+              break;
+
+            case "Urf":
+              gName = edge.node.urf.urfName
+              break;
+
+            case "Transportation":
+              gName = edge.node.transportation.transportationName
               break;
 
             default:
@@ -124,7 +147,12 @@ export class ResultPageComponent implements OnInit {
             date: edge.node.date,
             fobValue: edge.node.fobValue,
             ncm: { ncmNamePt: edge.node.ncm.ncmNamePt },
-            originCountry: { tradeBloc: { blocNamePt: edge.node.originCountry.tradeBloc.blocNamePt } }
+            originCountry: {
+              tradeBloc: { blocNamePt: edge.node.originCountry.tradeBloc.blocNamePt },
+              countryNamePt: edge.node.originCountry.countryNamePt
+            },
+            urf: { urfName: edge.node.urf.urfName },
+            transportation: { transportationName: edge.node.transportation.transportationName }
           }
         });
 
@@ -154,7 +182,7 @@ export class ResultPageComponent implements OnInit {
     }
     csvString = csvString.substring(0, csvString.length - 1);
 
-    //Generating file with the csvString and simulating button click to start its download 
+    //Generating file with the csvString and simulating button click to start its download
     var a = $("<a/>", {
       style: "display:none",
       href: "data:application/octet-stream;base64," + btoa(csvString), //Generating the file
