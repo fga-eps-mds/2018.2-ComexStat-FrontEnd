@@ -21,9 +21,9 @@ export class ResultPageComponent implements OnInit {
   byear;
   fyear;
   grouping;
-  dataIsNotEmpty: boolean
-  groupingSelected: boolean
-  groupBy: Array<{
+  dataIsNotEmpty: boolean //Variable to control whether the table should be displayed or not, based on the presence of returned data
+  groupingSelected: boolean //Variable to control which table will be displayed, based on the grouping option
+  groupBy: Array<{ //Array to store objects of grouped data 
     name: String;
     totalValue: number;
   }> = [{ name: "default", totalValue: 0 }];
@@ -38,6 +38,7 @@ export class ResultPageComponent implements OnInit {
     //getting the initial and final years of the search date-range passed through the URL
     this.byear = this.route.snapshot.queryParamMap.get('byear');
     this.fyear = this.route.snapshot.queryParamMap.get('fyear');
+    //getting the grouping option selected passe through the URL
     this.grouping = this.route.snapshot.queryParamMap.get('grouping');
 
     if (this.fyear < this.byear) {
@@ -53,11 +54,14 @@ export class ResultPageComponent implements OnInit {
     this.dataIsNotEmpty = false;
 
     this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" },
-                originCountry: { countryNamePt : "",  tradeBloc: { blocNamePt: "" } } ,
-                urf: { urfName: "" },
-                transportation: { transportationName: "" }
-              } }] //code to empty data variable before receiving a new set of results
+      edges: [{
+        node: {
+          date: "", fobValue: "", ncm: { ncmNamePt: "" },
+          originCountry: { countryNamePt: "", tradeBloc: { blocNamePt: "" } },
+          urf: { urfName: "" },
+          transportation: { transportationName: "" }
+        }
+      }] //code to empty data variable before receiving a new set of results
     };
 
     //Sending query to GraphQL end-point and receiving its result
@@ -106,9 +110,13 @@ export class ResultPageComponent implements OnInit {
     this.importations.forEach(element => {
       element.edges.forEach(edge => {
         this.dataIsNotEmpty = true; // if this piece of code is executed the result of the query was not empty
+
+        //If there's a grouping type selected, the grouped data variable is filled
         if (this.grouping != "None") {
 
           this.groupingSelected = true;
+
+          //Filling name temporary value based on which grouping was selected
           switch (this.grouping) {
             case "Economic Block":
               gName = edge.node.originCountry.tradeBloc.blocNamePt
@@ -130,12 +138,14 @@ export class ResultPageComponent implements OnInit {
               break;
           }
 
-
+          //Checking to see if the current group exists or not in the grouped data array
           index = this.groupBy.findIndex(e => e.name === gName);
           if (index > -1) {
+            //if it does, the current value is just added
             this.groupBy[index].totalValue += parseFloat(edge.node.fobValue)
           }
           else {
+            //if it does not, the current group is registered
             this.groupBy.push({ name: gName, totalValue: parseFloat(edge.node.fobValue) })
           }
 

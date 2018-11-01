@@ -11,7 +11,7 @@ import { AssetImportFacts, Query } from "../../types";
   styleUrls: ["./searchpage.component.css"]
 })
 export class SearchPageComponent implements OnInit {
-    years: String[]; //array to store all possible years of the search query selection
+  years: String[]; //array to store all possible years of the search query selection
   byear;
   fyear;
   grouping;
@@ -31,6 +31,7 @@ export class SearchPageComponent implements OnInit {
     this.byear = $("#y-initial option:selected").text() + "-01-01";
     this.fyear = $("#y-final option:selected").text() + "-12-31";
 
+    //if no grouping is selected, then None is sent
     if ($('#group option:selected').text() == '')
       this.grouping = "None"
     else
@@ -41,7 +42,7 @@ export class SearchPageComponent implements OnInit {
       return
     }
 
-    //redirects to the resultpage with the years as parameters, so resultpage can query the api
+    //redirects to the resultpage with the years and grouping as parameters, so resultpage can query the api
     this.router.navigate(['/resultpage'], { queryParams: { byear: this.byear, fyear: this.fyear, grouping: this.grouping } });
   }
 
