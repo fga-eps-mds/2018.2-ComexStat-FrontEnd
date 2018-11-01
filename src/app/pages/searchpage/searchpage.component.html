@@ -51,7 +51,7 @@
       <input type="checkbox" class="custom-control-input" id="customCheck1" (change)="show=!show">
       <label class="custom-control-label" for="customCheck1">{{show ? 'Advanced Search' : 'Advanced Search'}}</label>
     </div>
-    
+
 
     <div *ngIf="show">
 
@@ -63,8 +63,11 @@
         <div class="form-group col">
           <label>Grouping</label>
           <select id="group" class="custom-select">
-            <option selected>Economic Block</option>
-            <option>Option 2</option>
+            <option selected>None</option>
+            <option>Economic Block</option>
+            <option>Country</option>
+            <option>Urf</option>
+            <option>Transportation</option>
           </select>
         </div>
 
