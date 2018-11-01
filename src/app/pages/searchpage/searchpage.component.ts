@@ -1,9 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-import gql from 'graphql-tag';
 import * as $ from "jquery";
 
 import { AssetImportFacts, Query } from "../../types";
@@ -13,31 +10,20 @@ import { AssetImportFacts, Query } from "../../types";
   templateUrl: "./searchpage.component.html",
   styleUrls: ["./searchpage.component.css"]
 })
-export class SearchPageComponent implements OnInit {
-  years: String[]; //array to store all possible years of the search query selection
-  data: AssetImportFacts; // variable to store the received data into a more organized way, to be used in the template
-  importations: Observable<AssetImportFacts>; // variable to receive the query result returned by apollo
+export class SearchPageComponent implements OnInit {years: String[]; //array to store all possible years of the search query selection
   byear;
   fyear;
-  dataIsNotEmpty: boolean
   show: boolean
 
-  constructor(private apollo: Apollo) {
+  constructor(private router: Router) {
     this.show = false;
-    this.dataIsNotEmpty = false;
     this.years = ["2017"]; //initializing list so that the method "push" can be used
     for (var ano = 2016; ano >= 1998; ano--) {
       this.years.push(ano.toString()); //populating list "years" with the years between 1998 and 2016
     }
   }
 
-  public queryData() {
-
-    this.dataIsNotEmpty = false;
-
-    this.data = {
-      edges: [{ node: { date: "", fobValue: "", ncm: { ncmNamePt: "" } } }] //code to empty data variable before receiving a new set of results
-    };
+  public sendData() {
 
     //getting the initial and final years of the search date-range selected by the user
     this.byear = $("#y-initial option:selected").text() + "-01-01";
@@ -48,84 +34,9 @@ export class SearchPageComponent implements OnInit {
       return
     }
 
-    //Sending query to GraphQL end-point and receiving its result
-    this.importations = this.apollo
-      .watchQuery<Query>({
-        query: gql`
-        {
-          allImport(commercializedBetween:"[\\"${
-          this.byear
-          }\\",\\"${this.fyear}\\"]"){
-              edges{
-                 node{
-                  ncm{
-                    ncmNamePt
-                  }
-                  date
-                  fobValue
-                 }
-  
-              }
-            
-          }
-          
-        }
-        `
-      })
-      .valueChanges.pipe(
-        //Maping result objects to importations variable
-        map(result => result.data.allImport)
-      );
-
-    //Storing the results on data variable 
-    this.importations.forEach(element => {
-      element.edges.forEach(edge => {
-        this.dataIsNotEmpty = true; // if this piece of code is executed the result of the query was not empty
-        this.data.edges.push({
-          node: {
-            date: edge.node.date,
-            fobValue: edge.node.fobValue,
-            ncm: { ncmNamePt: edge.node.ncm.ncmNamePt }
-          }
-        });
-
-      });
-    });
-
-    //Deleting the first element of the array, which is empty because of the initialization at the start of the function
-    this.data.edges.shift();
-
+    //redirects to the resultpage with the years as parameters, so resultpage can query the api
+    this.router.navigate(['/resultpage'], {queryParams: {byear: this.byear, fyear: this.fyear}});
   }
 
-  //Function to export table as CSV
-  public exportToCsv(element) {
-
-    //Storing the table on a variable
-    var table = element.nextElementSibling;
-    var csvString = ""; //Creating a string to store generated csv
-
-    //Generating CSV by going through the table rows and splitting cells values with ";" and lines with a line break
-    for (var i = 0; i < table.rows.length; i++) {
-      var rowData = table.rows[i].cells;
-      for (var j = 0; j < rowData.length; j++) {
-        csvString = csvString + rowData[j].innerHTML + ";";
-      }
-      csvString = csvString.substring(0, csvString.length - 1);
-      csvString = csvString + "\n";
-    }
-    csvString = csvString.substring(0, csvString.length - 1);
-
-    //Generating file with the csvString and simulating button click to start its download 
-    var a = $("<a/>", {
-      style: "display:none",
-      href: "data:application/octet-stream;base64," + btoa(csvString), //Generating the file
-      download: "assetsData.csv"
-    }).appendTo("body");
-    a[0].click(); //Simulating click
-    a.remove(); //Removing temporary button
-  }
-
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 }

@@ -9,12 +9,14 @@ import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpModule } from '@angular/http'
+import { ResultPageComponent } from './pages/resultpage/resultpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ResultPageComponent
   ],
   imports: [
     BrowserModule,
