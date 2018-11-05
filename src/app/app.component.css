@@ -8,15 +8,3 @@
     padding-right: 1em;
     font-weight: bold;
 }
-
-.page-footer {
-    background-color: #313131;
-    color: rgba(255, 255, 255, 0.555);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.page-footer a {
-    color: white;
-}
