@@ -2,6 +2,9 @@
 # Comex Stat
 
 [![Build Status](https://travis-ci.org/fga-eps-mds/2018.2-ComexStat.svg?branch=develop)](https://travis-ci.org/fga-eps-mds/2018.2-ComexStat)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b32f53a2a646791235e8/maintainability)](https://codeclimate.com/github/fga-eps-mds/2018.2-ComexStat-FrontEnd/maintainability)
+[![codecov](https://codecov.io/gh/fga-eps-mds/2018.2-ComexStat-FrontEnd/branch/master/graph/badge.svg)](https://codecov.io/gh/fga-eps-mds/2018.2-ComexStat-FrontEnd)
+
 
 ## Sobre
 

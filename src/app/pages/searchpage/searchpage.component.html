@@ -1,0 +1,134 @@
+<div class="container searchpage">
+
+  <div>
+    <h1>Operation Type</h1>
+    <hr />
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label>Market Type</label>
+        <select id="t-market" class="custom-select">
+          <option selected>Assets</option>
+          <option>Services</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="inputState">Exchange Rate</label>
+        <select id="t-market" class="custom-select">
+          <option selected>Import</option>
+          <option>Export</option>
+        </select>
+      </div>
+
+    </div>
+
+    <h1>Search Period</h1>
+    <hr />
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="y-initial">Initial Year</label>
+        <select id="y-initial" class="custom-select">
+          <option selected>2018</option>
+          <option *ngFor="let year of years">{{year}}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="y-final">Final Year</label>
+        <select id="y-final" class="custom-select">
+          <option selected>2018</option>
+          <option *ngFor="let year of years">{{year}}</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck1" (change)="show=!show">
+      <label class="custom-control-label" for="customCheck1">{{show ? 'Advanced Search' : 'Advanced Search'}}</label>
+    </div>
+
+
+    <div *ngIf="show">
+
+      <h1>Advanced Options</h1>
+      <hr />
+
+      <div class="form-row">
+
+        <div class="form-group col">
+          <label>Grouping</label>
+          <select id="group" class="custom-select">
+            <option selected>None</option>
+            <option>Economic Block</option>
+            <option>Country</option>
+            <option>Urf</option>
+            <option>Transportation</option>
+          </select>
+        </div>
+
+        <div class="custom-control custom-checkbox col">
+          <label>Show Value In</label>
+          <div class="row">
+            <div class="col-3">
+              <!-- <input type="checkbox" class="form-checkbox"> US FOB<br> -->
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">US FOB</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <!-- <input type="checkbox" class="form-checkbox"> New Weight<br> -->
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">New Weight</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-100"></div>
+
+        <div class="form-group col">
+          <label>Economic Block</label>
+          <select id="eco-block" class="custom-select">
+            <option selected>Europian Union</option>
+            <option>South American</option>
+          </select>
+        </div>
+
+        <div class="form-group col">
+          <label>Detail by Month</label>
+          <div class="row">
+            <div class="col-auto">
+              <select id="month-initial" class="custom-select">
+                <option selected>January</option>
+                <option>February</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <select id="month-final" class="custom-select">
+                <option selected>March</option>
+                <option>April</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-auto">
+        <button type="button" class="btn btn-query" (click)="sendData()">Query</button>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-clear">Clear</button>
+      </div>
+    </div>
+  </div>

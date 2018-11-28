@@ -1,0 +1,40 @@
+.searchpage h1{
+  margin-top: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.searchpage hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 3px solid #17c13d;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.searchpage .form-control{
+  border-radius: 10px;
+  width: 200px;
+  height: 35px;
+}
+
+.searchpage .form-checkbox{
+  border-radius: 10px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.searchpage .btn-query {
+  background-color: #17c13d;
+  border-color: #17c13d;
+  /* margin-right: 0px; */
+}
+
+.searchpage .btn-clear {
+  background-color: #f44336;
+  border-color: #f44336;
+}

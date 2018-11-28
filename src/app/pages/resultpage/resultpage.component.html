@@ -1,0 +1,35 @@
+<div class="container">
+  <div *ngIf="dataIsNotEmpty">
+    <button id="btdown" class="btn" export-to-csv (click)="exportToCsv($event.target)">Export to CSV</button>
+    <table *ngIf="!groupingSelected" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Name</th>
+          <th scope="col">FOB Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let value of data.edges">
+          <td>{{value.node.date}}</td>
+          <td>{{value.node.ncm.ncmNamePt}}</td>
+          <td>{{value.node.fobValue}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table *ngIf="groupingSelected" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">FOB Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let value of groupBy">
+          <td>{{value.name}}</td>
+          <td>{{value.totalValue}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
