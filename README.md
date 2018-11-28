@@ -5,6 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b32f53a2a646791235e8/maintainability)](https://codeclimate.com/github/fga-eps-mds/2018.2-ComexStat-FrontEnd/maintainability)
 [![codecov](https://codecov.io/gh/fga-eps-mds/2018.2-ComexStat-FrontEnd/branch/master/graph/badge.svg)](https://codecov.io/gh/fga-eps-mds/2018.2-ComexStat-FrontEnd)
 
+
 ## Sobre
 
 O ComexStat, vem com o objetivo de tornar mais fácil o acesso aos dados relacionados ao comércio exterior de bens, e posteriormente serviços no Brasil, proporcionando aos usuários a possibilidade de trabalhar com as informações desejadas de forma mais adequada as suas necessidades.
